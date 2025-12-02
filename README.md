@@ -17,20 +17,21 @@ Prepared as part of QA70 training.
 
 **📂 Project Structure**
 src/
-└── main/
-└── java/com/demoqa/
-├── core/
-│    ├── BasePage.java
-│    └── TestBase.java
-├── pages/
-│    ├── HomePage.java
-│    ├── SidePanel.java
-│    └── bookstore/
-│         ├── LoginPage.java
-│         └── ProfilePage.java
-└── test/
-└── java/com/demoqa/tests/
-└── BookStoreTests.java
+ └── main/
+      └── java/com/demoqa/
+          ├── core/
+          │    ├── BasePage.java
+          │    └── TestBase.java
+          ├── pages/
+          │    ├── HomePage.java
+          │    ├── SidePanel.java
+          │    └── bookstore/
+          │         ├── LoginPage.java
+          │         └── ProfilePage.java
+ └── test/
+      └── java/com/demoqa/tests/
+           └── BookStoreTests.java
+
 
 **🧩 Core Logic**
 **_1. BasePage_**
