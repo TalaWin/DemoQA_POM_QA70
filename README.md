@@ -16,24 +16,28 @@ validating displayed username
 Prepared as part of QA70 training.
 
 **📂 Project Structure**
+## 📁 Project Structure
+
+```
 src/
-└── main/
+├── main/
+│   └── java/com/demoqa/
+│       ├── core/
+│       │   └── BasePage.java
+│       └── pages/
+│           ├── HomePage.java
+│           ├── SidePanel.java
+│           └── bookstore/
+│               ├── LoginPage.java
+│               └── ProfilePage.java
+│
+└── test/
     └── java/com/demoqa/
         ├── core/
-        │   ├── BasePage.java
         │   └── TestBase.java
-        └── pages/
-            ├── HomePage.java
-            ├── SidePanel.java
-            └── bookstore/
-                ├── LoginPage.java
-                └── ProfilePage.java
-
-test/
-└── java/com/demoqa/tests/
-    └── BookStoreTests.java
-
-
+        └── tests/
+            └── BookStoreTests.java
+```
 
 **🧩 Core Logic**
 **_1. BasePage_**
