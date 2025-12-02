@@ -15,7 +15,7 @@ public class BookStoreTests extends TestBase {
         new HomePage(driver).selectBookStore();
     }
 
-        @Test
+    @Test
     public void loginPositiveTest() {
         new SidePanel(driver).selectLogin();
         new LoginPage(driver)
