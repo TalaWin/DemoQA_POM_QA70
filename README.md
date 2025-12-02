@@ -3,14 +3,11 @@
 This project implements UI test automation for https://demoqa.com
 
 using the Page Object Model (POM) structure.
+
 It covers the Book Store Application module, including:
-
 navigating to the Book Store section
-
 opening the side panel menu
-
 performing user login
-
 validating displayed username
 
 Prepared as part of QA70 training.
