@@ -14,10 +14,30 @@ public class HomePage extends BasePage {
     @FindBy(css = ".card:nth-child(6)")
     WebElement bookStore;
 
+    @FindBy(css = ".card:nth-child(1)")
+    WebElement elements;
+
+    @FindBy(css = ".card:nth-child(3)")
+    WebElement alertsFrameWindows;
+
     public SidePanel selectBookStore() {
         closeFixedBannerIfPresent();
         scrollIntoView(bookStore);
         click(bookStore);
+        return new SidePanel(driver);
+    }
+
+    public SidePanel selectElements() {
+        closeFixedBannerIfPresent();
+        scrollIntoView(elements);
+        click(elements);
+        return new SidePanel(driver);
+    }
+
+    public SidePanel selectAlertsFrameWindows() {
+        closeFixedBannerIfPresent();
+        scrollIntoView(alertsFrameWindows);
+        click(alertsFrameWindows);
         return new SidePanel(driver);
     }
 }
