@@ -12,7 +12,6 @@ validating displayed username
 
 Prepared as part of QA70 training.
 
-**📂 Project Structure**
 ## 📁 Project Structure
 
 ```
