@@ -62,6 +62,7 @@ A shared superclass containing reusable utilities:
 * getWait(seconds) — unified WebDriverWait
 * isAlertPresent() — wait for and handle browser alerts
 
+
 **_2. TestBase_**
 
 Sets up the browser before each test:
