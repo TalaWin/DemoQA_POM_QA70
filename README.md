@@ -1,16 +1,14 @@
-       📘 **DemoQA POM Project — Lesson 25 (JSExecutor + Alerts + Elements)**
+       📘 **DemoQA POM Project — Lesson 24 (Book Store Login)**
 
 This project implements UI test automation for https://demoqa.com
 
-📌 Project Overview
+using the Page Object Model (POM) structure.
+It covers the Book Store Application module, including:
 
-This project was created as part of the QA70 training program and follows the Page Object Model (POM) design pattern.
-It covers the following DemoQA modules:
-
-Book Store Application (login + profile verification)
-Alerts, Frame & Windows (timer alert, confirm alert)
-Elements → Text Box (field highlighting using JavaScript)
-The framework includes JavaScript execution support (JSExecutor) and extended base logic (BasePage).
+* navigating to the Book Store section
+* opening the side panel menu
+* performing user login
+* validating displayed username
 
 Prepared as part of QA70 training.
 
@@ -38,52 +36,84 @@ src/
 ```
 
 
-**🧩 Core Logic**
+**1. BasePage**
 
-**_1. BasePage_**
+Base class containing common utilities:
 
-A shared superclass containing reusable utilities:
+✔ click(element)
 
-* click(element) — safe click
-* type(element, text) — click + clear + sendKeys
-* scrollIntoView(element) — smooth scrolling
-* clickWithJS(element) — JS click when Selenium is blocked
-* typeWithJS(element, text) — JS-based text input
-* closeFixedBannerIfPresent() — hides the bottom #fixedban ad
-* getWait(seconds) — unified WebDriverWait
-* isAlertPresent() — wait for and handle browser alerts
+Standard Selenium WebDriver click.
 
+✔ type(element, text)
 
-**_2. TestBase_**
+Click → clear → sendKeys
+Ensures clean and stable text input.
+
+✔ scrollIntoView(element)
+
+Scrolls smoothly to an element
+
+shifts the viewport slightly upward to avoid footer overlap.
+
+✔ clickWithJS(element)
+
+JavaScript click — used when Selenium click is blocked by overlays.
+
+✔ typeWithJS(element, text)
+
+JavaScript value injection (rarely needed).
+
+✔ closeFixedBannerIfPresent()
+
+Hides DemoQA’s #fixedban advertisement block
+— prevents footer from intercepting clicks.
+This solves a common DemoQA interaction issue.
+
+**2. TestBase**
 
 Sets up the browser before each test:
 
 launches Chrome
+
 expands the window
+
 sets implicit wait (10s)
+
 opens https://demoqa.com
+
 Shared environment for all tests.
 
-**_3. HomePage_**
+**3. HomePage**
 
-Navigation to the main DemoQA modules:
+Handles top-level navigation.
 
-* selectBookStore()
-* selectElements()
-* selectAlertsFrameWindows()
+✔ selectBookStore()
 
-**_4. SidePanel_**
-Sidebar navigation inside DemoQA modules:
+closes fixed banner
 
-* selectLogin()
-* selectTextBox()
-* selectAlerts()
+scrolls to the Book Store card
 
-Each method returns the appropriate Page Object.
+clicks it
 
-**_5. LoginPage_**
+returns new SidePanel instance
 
-Handles login form
+**4. SidePanel**
+
+Interacts with the left vertical menu.
+
+✔ selectLogin()
+
+closes the banner
+
+scrolls into view
+
+clicks “Login”
+
+returns LoginPage
+
+**5. LoginPage**
+
+Handles login form.
 
 ✔ enterUserData(name, password)
 
@@ -93,83 +123,47 @@ Inputs username and password.
 
 Navigates to ProfilePage.
 
-**_6. ProfilePage_*
-
+**6. ProfilePage**
+   
 ✔ verifyUserName(name)
 
 Asserts that the displayed username matches the expected one.
 Detailed assertion messages are included for easier debugging.
 
-**_7. JSExecutor_**
-A helper class for operations that Selenium cannot handle reliably:
-
-* highlights fields with colors
-* sets input value directly via JavaScript
-* clicks buttons via JS
-* extracts innerText
-* retrieves current URL
-* refreshes page
-
-**_Bookstore Module Pages_**
-
-**_LoginPage_**
-Handles username/password input and clicking the Login button.
-
-**_ProfilePage_**
-Validates that the logged-in username is displayed correctly.
-Used in ElementsTests.
-
-**_ProfilePage_**
-**_AlertsPage
-
-Supports:
-* Timer Alert (alert appears after 5 seconds)
-* Confirm Alert (OK / Cancel)
-* Result message verification
-
 **🧪 Tests**
-Test Suites
-**_BookStoreTests_**
-login flow
-profile username check
+BookStoreTests
 
-**_AlertsFrameWindowsTests_**
-timer alert check
-confirm alert (Cancel / OK)
+Flow:
 
-**_ElementsTests_**
-highlighting Text Box fields via JS
-entering data with JS
-clicking Submit with JS
+* Open Book Store
+* Select “Login”
+* Enter credentials
+* Click Login
+* Validate username
 
-🚀 How to Run Tests
-Using IntelliJ IDEA
+Example:
 
-Right-click → Run test
+new SidePanel(driver).selectLogin();
+new LoginPage(driver)
+.enterUserData("TalaQwerty", "Aa345678!")
+.clickOnLoginButton()
+.verifyUserName("TalaQwerty");
 
-Using Maven
-mvn clean test
+🧱 What was implemented in Lesson 24
+* ✔ Complete POM architecture for Book Store
+* ✔ Automatic closing of blocking banner
+* ✔ Safe scrolling & clicking strategies
+* ✔ Correct page-to-page transitions
+* ✔ Username verification
+* ✔ Strong base for future expansion (Elements, Alerts, JSExecutor, etc.)
 
-🧱 What was implemented in Lesson 25
+* 🚀 Ready for Next Lessons
 
-* ✔ Added full navigation to Elements and Alerts, Frame & Windows
-* ✔ Implemented JSExecutor page with custom JS interactions
-* ✔ Added highlight logic for Text Box fields (green/red borders)
-* ✔ Implemented clicking on Submit via JavaScript
-* ✔ Implemented retrieving inner text & current URL
-* ✔ Created full ElementsTests suite
-* ✔ Added Alerts module with:
-* ▸ waiting for timed alert (5 sec)
-* ▸ handling Confirm alert (OK/Cancel)
-* ▸ verifying alert result on the page
-* ✔ Implemented AlertsPage following POM best practices
-* ✔ Extended SidePanel with new menu actions
-* ✔ Stabilized navigation using scrollIntoView + banner protection
-* ✔ Added clean test scenarios with chaining (fluent API)
-
-**_📦 Technologies Used_**
-Java 17
-Selenium 4.36+
-JUnit 5
-Maven
-Page Object Model (POM)
+This project now serves as a stable foundation for:
+* Elements module → TextBox
+* JS Executor tasks
+* Alerts / Frames
+* Select / MoveToElement
+* Upload & Download
+* Widgets
+* Forms
