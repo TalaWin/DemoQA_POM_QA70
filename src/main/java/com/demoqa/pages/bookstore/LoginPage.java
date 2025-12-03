@@ -12,6 +12,7 @@ public class LoginPage extends BasePage {
         super(driver);
     }
 
+
     @FindBy(id = "userName")
     WebElement userNameInput;
 
